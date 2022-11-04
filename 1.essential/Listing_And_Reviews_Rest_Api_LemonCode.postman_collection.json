@@ -70,12 +70,12 @@
 			"response": []
 		},
 		{
-			"name": "1.3. Get Paged Listings And Reviews with Wrong Country",
+			"name": "1.3. Get Listings And Reviews Without any Params",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3001/api/listingsAndReviews?country=Sspain&page=1&pageSize=4",
+					"raw": "http://localhost:3001/api/listingsAndReviews",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -84,20 +84,6 @@
 					"path": [
 						"api",
 						"listingsAndReviews"
-					],
-					"query": [
-						{
-							"key": "country",
-							"value": "Sspain"
-						},
-						{
-							"key": "page",
-							"value": "1"
-						},
-						{
-							"key": "pageSize",
-							"value": "4"
-						}
 					]
 				}
 			},
@@ -130,12 +116,12 @@
 			"response": []
 		},
 		{
-			"name": "1.5. Get Listings And Reviews Without any Params",
+			"name": "1.5. Get Listings And Reviews with Wrong Country",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3001/api/listingsAndReviews",
+					"raw": "http://localhost:3001/api/listingsAndReviews?country=Sspain",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -144,6 +130,12 @@
 					"path": [
 						"api",
 						"listingsAndReviews"
+					],
+					"query": [
+						{
+							"key": "country",
+							"value": "Sspain"
+						}
 					]
 				}
 			},
@@ -176,7 +168,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3001/api/listingsAndReviews/105",
+					"raw": "http://localhost:3001/api/listingsAndReviews/000",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -185,14 +177,14 @@
 					"path": [
 						"api",
 						"listingsAndReviews",
-						"105"
+						"000"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "3.1 Add a review to a listing",
+			"name": "3.1 Add One Review To A Listing",
 			"request": {
 				"method": "POST",
 				"header": [],
