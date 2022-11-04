@@ -1,0 +1,224 @@
+{
+	"info": {
+		"_postman_id": "6c0d0e81-be52-4733-8285-525737542cbf",
+		"name": "Listings And reviews Rest Api Lemon Code",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1.1 Get Paged Listings And Reviews",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3001/api/listingsAndReviews?country=Spain&page=1&pageSize=10",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"listingsAndReviews"
+					],
+					"query": [
+						{
+							"key": "country",
+							"value": "Spain"
+						},
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "pageSize",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "1.2. Get Paged Listings And Reviews Without Country",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3001/api/listingsAndReviews?page=1&pageSize=5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"listingsAndReviews"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "pageSize",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "1.3. Get Paged Listings And Reviews with Wrong Country",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3001/api/listingsAndReviews?country=Sspain&page=1&pageSize=4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"listingsAndReviews"
+					],
+					"query": [
+						{
+							"key": "country",
+							"value": "Sspain"
+						},
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "pageSize",
+							"value": "4"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "1.4. Get Listings And Reviews With Only Country",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3001/api/listingsAndReviews?country=Spain",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"listingsAndReviews"
+					],
+					"query": [
+						{
+							"key": "country",
+							"value": "Spain"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "1.5. Get Listings And Reviews Without any Params",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3001/api/listingsAndReviews",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"listingsAndReviews"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2.1 Get Listing",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3001/api/listingsAndReviews/10545725",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"listingsAndReviews",
+						"10545725"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2.2 Get Listing Wrong",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3001/api/listingsAndReviews/105",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"listingsAndReviews",
+						"105"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3.1 Add a review to a listing",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"comments\": \"Really nice flat 13\",    \r\n    \"reviewer_name\": \"Maria\",\r\n    \"listing_id\": \"10545725\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3001/api/listingsAndReviews",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"listingsAndReviews"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
