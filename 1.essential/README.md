@@ -1,7 +1,7 @@
 # Table of Contents
 1. [Requirements](#requirements)
 2. [Solution structure](#structure)
-3. [URI Design](design)
+3. [URI design](design)
 4. [How to switch between mock and mongoDb mode](#mode)
 5. [Steps to build, test and run it](#steps)
 6. [How to test it](#howto)
@@ -56,7 +56,8 @@ Add pagination to the enpdoint that gets list of houses.
 ```
 
 <a name="design"></a>
-## 3. URI Design
+## 3. URI design
+
 |HTTP Method  |  Resource | Description |
 | ----------  |---------  | ------  |
 |GET | `/listingsAndReviews?country=Spain&page=1&pageSize=10` |Get list of listings|
