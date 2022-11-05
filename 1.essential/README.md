@@ -85,7 +85,7 @@ Seed data path: path in your file system
 Docker container name: you can see this name in docker-compose.yml file. 
 Database name: you can see this name in .env.example or .env files.
 
-[RestoreAirbnbDatabase](images/RestoreAirbnb.JPG)
+![RestoreAirbnbDatabase](images/RestoreAirbnb.JPG)
 
 <a name="steps"></a>
 ## 5. Steps to build, test and run the rest api
@@ -111,26 +111,26 @@ You can find the Postman requests collection [here](Listing_And_Reviews_Rest_Api
 
    * URL: `http://localhost:3001/api/listingsAndReviews?country=Spain&page=1&pageSize=10`
 
-      [GetListPaged](images/Postman_GetList_Paged_1.JPG)
+      ![GetListPaged](images/Postman_GetList_Paged_1.JPG)
 
    * URL: `http://localhost:3001/api/listingsAndReviews?page=1&pageSize=10`
-      [GetListPagedWithoutCountry](images/Postman_GetList_Paged_2.JPG)
+      ![GetListPagedWithoutCountry](images/Postman_GetList_Paged_2.JPG)
 
    * URL: `http://localhost:3001/api/listingsAndReviews`
-      [GetListAll](images/Postman_GetList_All_3.JPG)
+      ![GetListAll](images/Postman_GetList_All_3.JPG)
 
    * URL: `http://localhost:3001/api/listingsAndReviews?country=Spain`
-      [GetListSpain](images/Postman_GetList_Spain_4.JPG)
+      ![GetListSpain](images/Postman_GetList_Spain_4.JPG)
 
    * URL: `http://localhost:3001/api/listingsAndReviews?country=sSpain`
-      [GetListWrongCountry](images/Postman_GetList_WrongCountry_5.JPG)
+      ![GetListWrongCountry](images/Postman_GetList_WrongCountry_5.JPG)
 
 * Requests to get the details of an existing a non existing house:
    * URL: `http://localhost:3001/api/listingsAndReviews/10545725`
-      [GetExistingListing](images/Postman_GetListing_OK.JPG)
+      ![GetExistingListing](images/Postman_GetListing_OK.JPG)
    
    * URL: `http://localhost:3001/api/listingsAndReviews/000`
-      [GetWrongListing](images/Postman_GetListing_Wrong.JPG)
+      ![GetWrongListing](images/Postman_GetListing_Wrong.JPG)
 
 * Request to add a new review for the "10545725" listing:
    * URL: `http://localhost:3001/api/listingsAndReviews`
@@ -142,10 +142,11 @@ You can find the Postman requests collection [here](Listing_And_Reviews_Rest_Api
          "listing_id": "10545725"
       }
       ```
-      [PostAddAReview](images/Postman_AddOneReview_1.JPG)
-
-      [GetExistingListing_2](images/Postman_AddOneReview_2.JPG)
+      ![PostAddAReview](images/Postman_AddOneReview_1.JPG)
+      
+      In the following picture you can see that the review has been added into 10545725 listing. 
+      ![GetExistingListing_2](images/Postman_AddOneReview_2.JPG)
 
 Here, you can see all the requests made:
 
-[LogRequests](images/LogRequests.JPG)
+![LogRequests](images/LogRequests.JPG)
