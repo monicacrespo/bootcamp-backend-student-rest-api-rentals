@@ -14,7 +14,7 @@ export const mapListingAndReviewsFromModelToApi = (listingAndReviews: model.List
   // Sorting the reviews by latest date
   // TypeScript only allows us to do arithmetic operations with values of type any, number, bigint or enum.
   // The getTime method returns a number
-  reviews: listingAndReviews.reviews.sort(function(a, b){ return b.date.getTime() - a.date.getTime() }).slice(0,3)  
+  reviews: listingAndReviews.reviews.sort(function(a, b){ return b.date.getTime() - a.date.getTime() }).slice(0,5)  
 });
 
 export const mapListingAndReviewsListFromModelToApi = (

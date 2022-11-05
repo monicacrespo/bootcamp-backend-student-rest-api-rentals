@@ -14,8 +14,8 @@
 
 3. Expose three endpoints:
 
-   * [1] Get a list of houses with the country as an optional filter
-   * [2] Get the details of a house
+   * [1] Get a list of houses with the country as an optional filter.
+   * [2] Get the details of a house. Once a house is selected, it will get its details, specifically title, image, description, address, number of bedrooms, number of bathrooms and a list of the last five reviews.
    * [3] Add a review: Name and review. Each time you add a new review, the date is generated automatically.
 
 For each endpoint, return only the relevant fields that will be used by the front application (clue: Api Model <-> mapper <-> Model)
