@@ -14,9 +14,9 @@
 
 3. Expose three endpoints:
 
-   * [1] Get a list of houses with the country as an optional filter.
-   * [2] Get the details of a house. Once a house is selected, it will get its details, specifically title, image, description, address, number of bedrooms, number of bathrooms and a list of the last five reviews.
-   * [3] Add a review: Name and review. Each time you add a new review, the date is generated automatically.
+   * Get a list of houses with the country as an optional filter.
+   * Get the details of a house. Once a house is selected, it will get its details, specifically title, image, description, address, number of bedrooms, number of bathrooms and a list of the last five reviews.
+   * Add a review: Name and review. Each time you add a new review, the date is generated automatically.
 
 For each endpoint, return only the relevant fields that will be used by the front application (clue: Api Model <-> mapper <-> Model)
 
@@ -73,6 +73,16 @@ Make sure the API_MOCK environment variable is `true` in the .env file in the ro
 
 ### MongoDb Mode
 `API_MOCK=false`
+In the root directory of this project there is an "airbnb" folder with the airbnb sample MongoDB database. You could also find it [here](https://www.mongodb.com/docs/atlas/sample-data/). In order to restore it to our Docker container that runs the Mongo image, you need to run the following command: `npm run start:console-runners`. Then you need to select `seed-data` and enter the following information:
+>> Seed data path: airbnb
+>> Docker container name: listings-and-reviews-db
+>> Database name: airbnb
+
+Seed data path: path in your file system 
+Docker container name: you can see this name in docker-compose.yml file. 
+Database name: you can see this name in .env.example or .env files.
+
+[RestoreAirbnbDatabase](https://github.com/monicacrespo/bootcamp-backend-student-rest-api-rentals/tree/main/RestoreAirbnb.JPG)
 
 <a name="steps"></a>
 ## 5. Steps to build, test and run the rest api
@@ -97,14 +107,27 @@ You can find the Postman requests collection [here](https://github.com/monicacre
 * Requests to get a list of houses with the country as an optional filter:
 
    * URL: `http://localhost:3001/api/listingsAndReviews?country=Spain&page=1&pageSize=10`
+
+      [GetListPaged](https://github.com/monicacrespo/bootcamp-backend-student-rest-api-rentals/tree/main/Postman_GetList_Paged_1.JPG)
+
    * URL: `http://localhost:3001/api/listingsAndReviews?page=1&pageSize=10`
+      [GetListPagedWithoutCountry](https://github.com/monicacrespo/bootcamp-backend-student-rest-api-rentals/tree/main/Postman_GetList_Paged_2.JPG)
+
    * URL: `http://localhost:3001/api/listingsAndReviews`
+      [GetListPagedWithoutCountry](https://github.com/monicacrespo/bootcamp-backend-student-rest-api-rentals/tree/main/Postman_GetList_All.JPG)
+
    * URL: `http://localhost:3001/api/listingsAndReviews?country=Spain`
+      [GetListAll](https://github.com/monicacrespo/bootcamp-backend-student-rest-api-rentals/tree/main/Postman_GetList_Spain_4.JPG)
+
    * URL: `http://localhost:3001/api/listingsAndReviews?country=sSpain`
+      [GetListWrongCountry](https://github.com/monicacrespo/bootcamp-backend-student-rest-api-rentals/tree/main/Postman_GetList_WrongCountry_5.JPG)
 
 * Requests to get the details of an existing a non existing house:
    * URL: `http://localhost:3001/api/listingsAndReviews/10545725`
+      [GetExistingListing](https://github.com/monicacrespo/bootcamp-backend-student-rest-api-rentals/tree/main/Postman_GetListing_OK.JPG)
+   
    * URL: `http://localhost:3001/api/listingsAndReviews/000`
+      [GetWrongListing](https://github.com/monicacrespo/bootcamp-backend-student-rest-api-rentals/tree/main/Postman_GetListing_Wrong.JPG)
 
 * Request to add a new review for the "10545725" listing:
    * URL: `http://localhost:3001/api/listingsAndReviews`
@@ -116,3 +139,10 @@ You can find the Postman requests collection [here](https://github.com/monicacre
          "listing_id": "10545725"
       }
       ```
+      [PostAddAReview](https://github.com/monicacrespo/bootcamp-backend-student-rest-api-rentals/tree/main/Postman_AddOneReview_1.JPG)
+
+      [GetExistingListing_2](https://github.com/monicacrespo/bootcamp-backend-student-rest-api-rentals/tree/main/Postman_AddOneReview_2.JPG)
+
+Here, you can see all the requests made:
+
+[LogRequests](https://github.com/monicacrespo/bootcamp-backend-student-rest-api-rentals/tree/main/LogRequests.JPG)
