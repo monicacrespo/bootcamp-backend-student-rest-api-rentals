@@ -2,9 +2,11 @@
 1. [Requirements](#requirements)
 2. [Solution structure](#structure)
 3. [URI design](#design)
-4. [How to switch between mock and mongoDb mode](#mode)
-5. [Steps to build, test and run it](#steps)
+4. [Steps to install, restore and start it](#steps)
+5. [How to switch between mock and mongoDb mode](#mode)
 6. [How to test it](#howto)
+6. [How to run the tests](#unittest)
+7. [How to run the integration tests](#integrationtest)
 
 <a name="requirements"></a>
 ## 1. Requirements
@@ -67,9 +69,29 @@ Add pagination to the enpdoint that gets list of houses.
 |GET | `/listingsAndReviews/:id`|Get a listing |
 |POST| `/listingsAndReviews` | Add a review |
 
-<a name="mode"></a>
-## 4. How to switch between mock and mongoDb mode
+<a name="steps"></a>
+## 4. Steps to install, restore and start it
 
+* Install app: `npm install`
+
+* Restore airbnb database
+
+   In the root directory of this repository there is an "airbnb" folder with the airbnb sample MongoDb database. You could also find it [here](https://www.mongodb.com/docs/atlas/sample-data/). In order to restore it to our Docker container that runs the Mongo image, you need to run the following command: `npm run start:console-runners`. Then you need to select `seed-data` and enter the following information:
+
+   >> Seed data path: `../airbnb`
+   >> Docker container name: `listings-and-reviews-db`
+   >> Database name: `airbnb`
+
+   Seed data path: path in your file system 
+   Docker container name: you can see this name in docker-compose.yml file. 
+   Database name: you can see this name in .env.example or .env files.
+
+   ![RestoreAirbnbDatabase](images/RestoreAirbnb.JPG)
+
+* Run app: `npm start`
+
+<a name="mode"></a>
+## 5. How to switch between mock and mongoDb mode
 
 ### Mock Mode 
 Make sure the API_MOCK environment variable is `true` in the `.env` file in the root directory of this project: `API_MOCK=true`
@@ -77,31 +99,7 @@ Make sure the API_MOCK environment variable is `true` in the `.env` file in the 
 ### MongoDb Mode
 `API_MOCK=false`
 
-In the root directory of this repository there is an "airbnb" folder with the airbnb sample MongoDB database. You could also find it [here](https://www.mongodb.com/docs/atlas/sample-data/). In order to restore it to our Docker container that runs the Mongo image, you need to run the following command: `npm run start:console-runners`. Then you need to select `seed-data` and enter the following information:
-
->> Seed data path: `../airbnb`
->> Docker container name: `listings-and-reviews-db`
->> Database name: `airbnb`
-
-Seed data path: path in your file system 
-Docker container name: you can see this name in docker-compose.yml file. 
-Database name: you can see this name in .env.example or .env files.
-
-![RestoreAirbnbDatabase](images/RestoreAirbnb.JPG)
-
-<a name="steps"></a>
-## 5. Steps to build, test and run the rest api
-Install app: `npm install`
-
-Run specs:
-
-`npm run test:watch`
-
-`npm run test:watch listingAndReviews.mappers`
-
-`npm run test:watch listingAndReviews.rest-api`
-
-Run app: `npm start`
+Note that if `.env` file does not exist, the create-dev-env.sh script will create it from `.env.example` file.
 
 <a name="howto"></a>
 ## 6. How to test it
@@ -152,3 +150,41 @@ You can find the Postman requests collection [here](Listing_And_Reviews_Rest_Api
 Here, you can see all the requests made:
 
 ![LogRequests](images/LogRequests.JPG)
+
+<a name="unittest"></a>
+## 7. How to run the unit tests
+
+I've used [Jest Framework](https://jestjs.io/) to add unit tests of the `listingAnReviews.mappers.ts` file. Jest is a Javascript Testing framework built by Facebook.
+
+### Debugging Jest
+Since jest is a nodejs process, you could use the integrated JavaScript Debug Terminal provided by VS Code.
+
+You could run all specs as single run in this terminal and adding some breakpoints with this command: `npm test`
+
+Run unit tests in watch mode:
+
+`npm run test:watch`
+
+`npm run test:watch listingAndReviews.mappers`
+
+<a name="integrationtest"></a>
+## 8. How to run the integration tests
+I've used [supertest](https://github.com/visionmedia/supertest) to add integration tests of the `listingAndReviews.rest-api.ts` file. In this file I have added integration test of these two endpoints:
+* getListingAndReviewsList
+* getListingAndReviews
+
+Supertest needs the app express instance to do a mock request. The `.env.test` file is a custom environment file for tests:
+```
+NODE_ENV=development
+PORT=3001
+STATIC_FILES_PATH=../public
+CORS_ORIGIN=*
+CORS_METHODS=GET,POST,PUT,DELETE
+API_MOCK=true
+MONGODB_URI=mongodb://localhost:27017/airbnb
+```
+
+Run integration tests in watch mode:
+`npm run test:watch listingAndReviews.rest-api`
+
+If you would like to test this repository implementation with a MongoDB memory database, please have a look [here](https://github.com/Lemoncode/bootcamp-backend/tree/main/00-stack-documental/04-rest-api/07-testing/06-integration-tests)
