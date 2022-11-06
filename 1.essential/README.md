@@ -31,9 +31,10 @@ Add pagination to the enpdoint that gets list of houses.
 ## 2. Solution structure
 
 ```
+├── airbnb
 ├── 1.essential
-│   ├── airbnb
 │   ├── config/test
+│   ├── images
 │   ├── public
 │   ├── src
 │   	├── common/middlewares
@@ -43,15 +44,17 @@ Add pagination to the enpdoint that gets list of houses.
 │   	├── pods/listingAndReviews
 │   	├── app.ts
 │   	├── index.ts
+├── .babelrc
 ├── .editorconfig
+├── .env
 ├── .env.test
 ├── .gitignore
-├── Listing And reviews - Rest Api - Lemon Code.postman_collection.json
-├── README.md
-├── create-dev-env.sh
+├── .create-dev-env.sh
 ├── docker-compose.yml
+├── Listing_And_Reviews_Rest_Api_LemonCode.postman_collection.json
 ├── package-lock.json
 ├── package.json
+├── README.md
 ├── tsconfig.json
 ```
 
@@ -69,17 +72,16 @@ Add pagination to the enpdoint that gets list of houses.
 
 
 ### Mock Mode 
-Make sure the API_MOCK environment variable is `true` in the .env file in the root directory of this project: `API_MOCK=true`
+Make sure the API_MOCK environment variable is `true` in the `.env` file in the root directory of this project: `API_MOCK=true`
 
 ### MongoDb Mode
 `API_MOCK=false`
 
-In the root directory of this project there is an "airbnb" folder with the airbnb sample MongoDB database. You could also find it [here](https://www.mongodb.com/docs/atlas/sample-data/). In order to restore it to our Docker container that runs the Mongo image, you need to run the following command: `npm run start:console-runners`. Then you need to select `seed-data` and enter the following information:
+In the root directory of this repository there is an "airbnb" folder with the airbnb sample MongoDB database. You could also find it [here](https://www.mongodb.com/docs/atlas/sample-data/). In order to restore it to our Docker container that runs the Mongo image, you need to run the following command: `npm run start:console-runners`. Then you need to select `seed-data` and enter the following information:
 
->> Seed data path: `airbnb`
+>> Seed data path: `../airbnb`
 >> Docker container name: `listings-and-reviews-db`
 >> Database name: `airbnb`
-
 
 Seed data path: path in your file system 
 Docker container name: you can see this name in docker-compose.yml file. 
@@ -144,7 +146,7 @@ You can find the Postman requests collection [here](Listing_And_Reviews_Rest_Api
       ```
       ![PostAddAReview](images/Postman_AddOneReview_1.JPG)
       
-      In the following picture you can see that the review has been added into 10545725 listing. 
+      In the following picture you can see that the review has been added into 10545725 listing and it's displayed the first one because is the newest one. 
       ![GetExistingListing_2](images/Postman_AddOneReview_2.JPG)
 
 Here, you can see all the requests made:
