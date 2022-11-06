@@ -5,7 +5,7 @@
 4. [Steps to install, restore and start it](#steps)
 5. [How to switch between mock and mongoDb mode](#mode)
 6. [How to test it](#howto)
-6. [How to run the tests](#unittest)
+6. [How to run the unit tests](#unittest)
 7. [How to run the integration tests](#integrationtest)
 
 <a name="requirements"></a>
