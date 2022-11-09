@@ -1,6 +1,6 @@
 import express from 'express';
 import path from 'path';
-import { createRestApiServer, connectToDBServer, db } from 'core/servers';
+import { createRestApiServer, connectToDBServer } from 'core/servers';
 import { envConstants } from 'core/constants';
 import {
   logRequestMiddleware,
