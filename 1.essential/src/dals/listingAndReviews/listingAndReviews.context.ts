@@ -8,7 +8,7 @@ const reviewSchema = new Schema<Review>({
     listing_id: { type: Schema.Types.String, required: true }
 })
 
-const listingAndReviewsSchema = new Schema<ListingAndReviews>({
+const listingAndReviewSchema = new Schema<ListingAndReviews>({
     // Note that the _id is here because is string. Otherwise Mongoose will generate it automatically if it was ObjectId.
     _id: { type: Schema.Types.String, required: true },
     listing_url: { type: Schema.Types.String, required: true },
@@ -23,6 +23,15 @@ const listingAndReviewsSchema = new Schema<ListingAndReviews>({
     },
     // reviews: [ reviewSchema ]
     reviews: { type: Schema.Types.Mixed, required: true }
-})
+},
+{
+    timestamps: true,
+    // Mongoose automatically looks for the plural, lowercased version of your model name
+    // So, it would create the collection `listingsandreviews`.
+    // To Resolve this, we can use a CamelCase name in the collection field
+    // Using `listingsAndReviews` to save the collection name as CamelCase
+    collection: "listingsAndReviews",
+  }
+)
 
-export const listingAndReviewsContext = model<ListingAndReviews>('listingsAndReviews', listingAndReviewsSchema);
+export const listingAndReviewsContext = model<ListingAndReviews>('listingsAndReview', listingAndReviewSchema);
