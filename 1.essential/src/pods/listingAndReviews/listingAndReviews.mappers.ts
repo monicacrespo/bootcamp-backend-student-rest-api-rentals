@@ -39,7 +39,7 @@ export const mapListingAndReviewsFromApiToModel = (listingAndReviews: apiModel.L
 // Review mapping from Api to db
 export const mapReviewFromApiToModel = (listingAndReviews: apiModel.Review): model.Review => ({ 
   listing_id: listingAndReviews.listing_id,
-  date: listingAndReviews.date, 
+  date: new Date(), 
   reviewer_name: listingAndReviews.reviewer_name,
   comments: listingAndReviews.comments,
 });

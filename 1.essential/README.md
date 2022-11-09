@@ -67,7 +67,7 @@ Add pagination to the enpdoint that gets list of houses.
 | ----------  |---------  | ------  |
 |GET | `/listingsAndReviews?country=Spain&page=1&pageSize=10` |Get list of listings|
 |GET | `/listingsAndReviews/:id`|Get a listing |
-|POST| `/listingsAndReviews` | Add a review |
+|PUT| `/listingsAndReviews/:id` | Add a review |
 
 <a name="steps"></a>
 ## 4. Steps to install, restore and start it
@@ -144,7 +144,7 @@ You can find the Postman requests collection [here](Listing_And_Reviews_Rest_Api
          "listing_id": "10545725"
       }
       ```
-      ![PostAddAReview](images/Postman_AddOneReview_1.JPG)
+      ![PutAddAReview](images/Postman_AddOneReview_1.JPG)
       
       In the following picture you can see that the review has been added into 10545725 listing and it's displayed the first one because is the newest one. 
       ![GetExistingListing_2](images/Postman_AddOneReview_2.JPG)

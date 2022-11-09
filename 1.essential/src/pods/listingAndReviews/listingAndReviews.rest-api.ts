@@ -37,10 +37,15 @@ listingsAndReviewsApi
     }
   }) 
   // Add a new review
-  .post('/', async (req, res, next) => {
+  // id used to filter the listing
+  .put("/:id", async (req, res, next) => {
     try {
+      const { id } = req.params;
       const review = mapReviewFromApiToModel(req.body);
-      let newReview = await listingAndReviewsRepository.insertReview(review);
+      let newReview = await listingAndReviewsRepository.insertReview(
+        id,
+        review
+      );
       res.send(mapReviewFromModelToApi(newReview));
     } catch (error) {
       next(error);
