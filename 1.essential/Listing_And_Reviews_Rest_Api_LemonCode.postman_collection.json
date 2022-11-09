@@ -186,11 +186,11 @@
 		{
 			"name": "3.1 Add One Review To A Listing",
 			"request": {
-				"method": "POST",
+				"method": "PUT",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"comments\": \"Really nice flat 13\",    \r\n    \"reviewer_name\": \"Maria\",\r\n    \"listing_id\": \"10545725\"\r\n}",
+					"raw": "{\r\n    \"comments\": \"Really nice apartment 2\",    \r\n    \"reviewer_name\": \"Paula\",\r\n    \"listing_id\": \"10545725\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -198,7 +198,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3001/api/listingsAndReviews",
+					"raw": "http://localhost:3001/api/listingsAndReviews/10545725",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -206,7 +206,8 @@
 					"port": "3001",
 					"path": [
 						"api",
-						"listingsAndReviews"
+						"listingsAndReviews",
+						"10545725"
 					]
 				}
 			},

@@ -135,18 +135,18 @@ You can find the Postman requests collection [here](Listing_And_Reviews_Rest_Api
       ![GetWrongListing](images/Postman_GetListing_Wrong.JPG)
 
 * Request to add a new review for the "10545725" listing:
-   * URL: `http://localhost:3001/api/listingsAndReviews`
+   * URL: `http://localhost:3001/api/listingsAndReviews/10545725`
    * BODY:
       ```
       {
-         "comments": "Really nice flat 13",    
-         "reviewer_name": "Maria",
+         "comments": "Really nice apartment 3",
+         "reviewer_name": "Marina",
          "listing_id": "10545725"
       }
       ```
       ![PutAddAReview](images/Postman_AddOneReview_1.JPG)
       
-      In the following picture you can see that the review has been added into 10545725 listing and it's displayed the first one because is the newest one. 
+      The date has been created automatically. In the following picture you can see that the review has been added into 10545725 listing and it's displayed the first one because is the newest one.   
       ![GetExistingListing_2](images/Postman_AddOneReview_2.JPG)
 
 Here, you can see all the requests made:
