@@ -87,6 +87,8 @@ Add pagination to the enpdoint that gets list of houses.
    Database name: you can see this name in .env.example or .env files.
 
    ![RestoreAirbnbDatabase](images/RestoreAirbnb.JPG)
+   
+   ![MongoDBCompassCollection](images/MongoDB_Compass_ListingsAndReviews_Collection.JPG)
 
 * Run app: `npm start`
 
