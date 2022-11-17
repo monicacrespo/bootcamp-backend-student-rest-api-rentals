@@ -19,10 +19,10 @@
 
    1. Get a list of houses with the country as an optional filter. (must)
       Front End "List holiday houses" page:
-      ![ListHouses](01-listado-casas.png)      
+      ![ListHouses](images/01-listado-casas.png)      
    2. Get the details of a house. Once a house is selected in the front end, it will get its details, specifically title, image, description, address, number of bedrooms, number of bathrooms and a list of the last five reviews. (must)
       Front End "Holiday house details" page:
-      ![HouseDetails](02-detalle-casa.png)
+      ![HouseDetails](images/02-detalle-casa.png)
    3. Add a review: Name and review. Each time you add a new review, the date is generated automatically. (must)
    4. Add an endpoint for the login. (challenge)
    5. Add an endpoint to update the detail of a listing. (challenge)
