@@ -5,13 +5,13 @@
 4. [Steps to install, restore and start it](#steps)
 5. [How to switch between mock and mongoDb mode](#mode)
 6. [How to test it](#howto)
-6. [How to run the unit tests](#unittest)
-7. [How to run the integration tests](#integrationtest)
+7. [How to run the unit tests](#unittest)
+8. [How to run the integration tests](#integrationtest)
 
 <a name="requirements"></a>
 ## 1. Requirements
 
-1. Install and configure the libraries that will be used in the project: Express, TypeScript, Babel, etc.
+1. Install and configure the libraries that will be used in the project: Express, TypeScript, Babel, supertest, jest, jsonwebtoken, cookie-parser etc.
 
 2. Structure your backend project using pods. Pods (Product Oriented Delivery) are a way of structuring your project by feature, instead of type. Instead of having a directory structure with several types (controllers, models, templates...), everything is grouped around a feature (comments, posts...).
 
@@ -24,7 +24,7 @@
       Front End "Holiday house details" page:
       ![HouseDetails](02-detalle-casa.png)
    3. Add a review: Name and review. Each time you add a new review, the date is generated automatically. (must)
-   4. Add an endpoint for the login. The login workflow is implemented using cookies. (challenge)
+   4. Add an endpoint for the login. (challenge)
    5. Add an endpoint to update the detail of a listing. (challenge)
 
 4. Also, implement the following funcionality:
@@ -90,7 +90,7 @@
 |GET | `/listingsAndReviews?country=Spain&page=1&pageSize=10` | Get list of listings|
 |GET | `/listingsAndReviews/:id`|Get a listing |
 |PUT| `/listingsAndReviews/:id/reviews` | Add a review |
-|PUT| `/listingsAndReviews/:id` | Update a listing and its reviews |
+|PUT| `/listingsAndReviews/:id` | Update a listing and/or its reviews |
 |POST| `/listingsAndReviews` | Insert a listing and/or its reviews |
 
 <a name="steps"></a>
@@ -114,7 +114,8 @@
    
    ![MongoDBCompassCollection](images/MongoDB_Compass_ListingsAndReviews_Collection.JPG)
 
-   You could also follow the following instructions: https://www.lemoncode.tv/curso/docker-y-mongodb/leccion/restaurando-backup-mongodb
+   You could also follow the following instructions: https://www.lemoncode.tv/curso/docker-y-mongodb/leccion/restaurando-backup-mongodb.
+
    Please, remember to check whether there are any previous backups in opt/app that you would need to delete.
 * Run app: `npm start`
 
@@ -135,7 +136,7 @@ To create the requests for the end points we could use Postman or similar app.
 
 You can find the Postman requests collection [here](Listing_And_Reviews_Rest_Api_LemonCode.postman_collection.json).
 
-* Request to login:
+* Request to login an "Admin" user. This user can use all the end points:
    * URL: `POST http://localhost:3001/api/security/login`
    * BODY:
       ```
@@ -144,9 +145,11 @@ You can find the Postman requests collection [here](Listing_And_Reviews_Rest_Api
 	      "password": "test"
       }
       ```
+   The login workflow is implemented using JWT stored in a cookie.
+
    We should install Postman interceptor to check cookies on postman. With cookies we could check it on browser too.
 
-   ![LoginCookie](images/Postman_Login_Cookie.JPG)
+   ![LoginAdminUser](images/Postman_Login_Cookie.JPG)
    
    What is cookies in response?
    The response cookie are the cookies that you want to place in the browser. The next connection from the browser that accepted the cookie from the response object will provide the cookie in the request object.
@@ -156,8 +159,15 @@ You can find the Postman requests collection [here](Listing_And_Reviews_Rest_Api
    Check [jwt](https://jwt.io) information:
    ![JWTIO](images/jwt.io.token.JPG)
  
-## Headers
-Authorization: Bearer my-token
+* Request to login an "Standard" user. This user can use all the end points except the update and insert of a listing:
+   * URL: `POST http://localhost:3001/api/security/login`
+   * BODY:
+      ```
+      {
+	      "email": "user@email.com",
+	      "password": "test"
+      }
+      ```
  
 * Requests to get a list of houses with the country as an optional filter. These requests can be used by either an Standard or Admin user:
 
@@ -278,9 +288,9 @@ Run unit tests in watch mode:
 
 <a name="integrationtest"></a>
 ## 8. How to run the integration tests
-I've used [supertest](https://github.com/visionmedia/supertest) to add integration tests of the `listingAndReviews.rest-api.ts` file. In this file I have added integration test of these two endpoints:
-* getListingAndReviewsList
-* getListingAndReviews
+I've used [supertest](https://github.com/visionmedia/supertest) to add integration tests of the `listingAndReviews.rest-api.ts` file. I have added integration test of these two endpoints:
+* Get a list of houses with the country as an optional filter
+* Get the details of a house
 
 Supertest needs the app express instance to do a mock request. The `.env.test` file is a custom environment file for tests:
 ```
@@ -291,9 +301,10 @@ CORS_ORIGIN=*
 CORS_METHODS=GET,POST,PUT,DELETE
 API_MOCK=true
 MONGODB_URI=mongodb://localhost:27017/airbnb
+AUTH_SECRET=MY_AUTH_SECRET
 ```
 
 Run integration tests in watch mode:
 `npm run test:watch listingAndReviews.rest-api`
 
-To test this repository implementation with a MongoDB memory database, please have a look [here](https://github.com/Lemoncode/bootcamp-backend/tree/main/00-stack-documental/04-rest-api/07-testing/06-integration-tests)
+To test this implementation with a MongoDB memory database, please have a look [here](https://github.com/Lemoncode/bootcamp-backend/tree/main/00-stack-documental/04-rest-api/07-testing/06-integration-tests)
