@@ -1,6 +1,6 @@
 import express from 'express';
 import path from 'path';
-import { createRestApiServer, connectToDBServer, db } from 'core/servers';
+import { createRestApiServer, connectToDBServer } from 'core/servers';
 import { envConstants } from 'core/constants';
 import {
   logRequestMiddleware,
@@ -8,6 +8,7 @@ import {
 } from 'common/middlewares';
 import { listingsAndReviewsApi } from 'pods/listingAndReviews';
 import { authenticationMiddleware, securityApi } from 'pods/security';
+import { userContext } from 'dals/user/user.context';
 
 const restApiServer = createRestApiServer();
 
@@ -24,7 +25,7 @@ restApiServer.use(logErrorRequestMiddleware);
 restApiServer.listen(envConstants.PORT, async () => {
   if (!envConstants.isApiMock) {
     await connectToDBServer(envConstants.MONGODB_URI);
-    await db.collection('users').findOneAndUpdate(
+    await userContext.findOneAndUpdate(
       {
       _id: '123456',
       },
@@ -37,8 +38,8 @@ restApiServer.listen(envConstants.PORT, async () => {
         }
       },     
       { upsert: true }
-    );
-    await db.collection('users').findOneAndUpdate(
+    ).lean();
+    await userContext.findOneAndUpdate(
       {
       _id: '654321',
       },
@@ -52,7 +53,7 @@ restApiServer.listen(envConstants.PORT, async () => {
       },     
       { upsert: true }
     );
-    const users = await db.collection('users').find().toArray();
+    const users = await userContext.find().lean();
     console.log('Running API database');
     console.log({ users });
   } else {

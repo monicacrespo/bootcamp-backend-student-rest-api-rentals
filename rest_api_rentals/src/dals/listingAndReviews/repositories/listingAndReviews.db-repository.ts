@@ -1,6 +1,6 @@
 import { ListingAndReviewsRepository } from './listingAndReviews.repository';
 import { ListingAndReviews, Review } from '../listingAndReviews.model';
-import { getListingAndReviewsContext } from '../listingAndReviews.context';
+import { listingAndReviewsContext } from '../listingAndReviews.context';
 
 export const dbRepository: ListingAndReviewsRepository = {
   getListingAndReviewsList: async (country?: string, page?: number, pageSize?: number) => {
@@ -8,17 +8,17 @@ export const dbRepository: ListingAndReviewsRepository = {
     const limit = Boolean(pageSize) ? pageSize : 0;  
     var query  = {};
     if (country !== 'undefined') query = {"address.country": country}
-    return await getListingAndReviewsContext()
+    return await listingAndReviewsContext
       .find(query)
       .skip(skip)
       .limit(limit)
-      .toArray();
+      .lean();
   },
   getListingAndReviews: async (id: string) => {
-    return await getListingAndReviewsContext().findOne({_id: id})
+    return await listingAndReviewsContext.findOne({_id: id}).lean();
   },
   insertReview: async (id: string, review: Review) => {
-    await getListingAndReviewsContext().findOneAndUpdate(
+    await listingAndReviewsContext.findOneAndUpdate(
       {
         _id: id,
         "reviews.reviewer_name":  { $ne: review.reviewer_name }
@@ -35,7 +35,7 @@ export const dbRepository: ListingAndReviewsRepository = {
   },
  
   updateListingAndReviews: async (id: string, listingAndReviews: ListingAndReviews) => {
-    await getListingAndReviewsContext().updateOne(
+    await listingAndReviewsContext.updateOne(
       { _id: id },
       {
         $set: {         
@@ -53,11 +53,11 @@ export const dbRepository: ListingAndReviewsRepository = {
         },
       },
       { upsert: false }
-    );
+    ).lean();
     return listingAndReviews;
     },
   insertListingAndReviews: async (listingAndReviews: ListingAndReviews) => {
-    await getListingAndReviewsContext().insertOne(      
+    await listingAndReviewsContext.create(      
       {
         _id: listingAndReviews._id,
         listing_url: listingAndReviews.listing_url,
