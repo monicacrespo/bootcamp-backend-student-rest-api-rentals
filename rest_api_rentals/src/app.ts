@@ -23,38 +23,8 @@ restApiServer.use(logErrorRequestMiddleware);
 
 restApiServer.listen(envConstants.PORT, async () => {
   if (!envConstants.isApiMock) {
-    await connectToDBServer(envConstants.MONGODB_URI);
-    await db.collection('users').findOneAndUpdate(
-      {
-      _id: '123456',
-      },
-      {
-        $set: { 
-          email: 'admin@email.com', 
-          // password: 'test', 
-          password: 'f9aafef201002163b4d661e82593691bdce2e487637e6499660a5367c1bc31ecbad06dfc568a60b757c7491424fa169307ed14cfdf7454f68178225f141b7621',
-          salt: '', role: 'admin' 
-        }
-      },     
-      { upsert: true }
-    );
-    await db.collection('users').findOneAndUpdate(
-      {
-      _id: '654321',
-      },
-      {
-        $set: { 
-          email: 'user@email.com', 
-          // password: 'test', 
-          password: 'f9aafef201002163b4d661e82593691bdce2e487637e6499660a5367c1bc31ecbad06dfc568a60b757c7491424fa169307ed14cfdf7454f68178225f141b7621',
-          salt: '', 
-          role: 'standard-user' }
-      },     
-      { upsert: true }
-    );
-    const users = await db.collection('users').find().toArray();
-    console.log('Running API database');
-    console.log({ users });
+    await connectToDBServer(envConstants.MONGODB_URI);    
+    console.log('Running API database');    
   } else {
     console.log('Running API mock');
   }

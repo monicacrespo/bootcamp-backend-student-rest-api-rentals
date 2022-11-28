@@ -10,14 +10,14 @@ export interface DB {
 export const db: DB = {
   users: [
     {
-      _id: '123456',
+      _id: new ObjectId(),
       email: 'admin@email.com',
       password: 'test',
       salt: '',
       role: 'admin'
     },
     {
-      _id: '654321',
+      _id: new ObjectId(),
       email: 'user@email.com',
       password: 'test',
       salt: '',

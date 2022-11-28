@@ -117,6 +117,12 @@
    You could also follow the following instructions: https://www.lemoncode.tv/curso/docker-y-mongodb/leccion/restaurando-backup-mongodb.
 
    Please, remember to check whether there are any previous backups in opt/app that you would need to delete.
+
+* Create users in database
+   In order to insert some users in to your Docker container that runs the Mongo image, you need to run the following command: `npm run start:console-runners`. Then you need to select `create-users`.
+
+   ![CreateUsers](images/create-users.jpg)
+
 * Run app: `npm start`
 
 <a name="mode"></a>

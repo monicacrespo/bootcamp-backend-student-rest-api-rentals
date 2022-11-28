@@ -17,7 +17,7 @@ securityApi
       );
       if (user) {
         const userSession: UserSession = {
-          id: user._id,
+          id: user._id.toHexString(),
           role: user.role,
         };
         const token = jwt.sign(userSession, envConstants.AUTH_SECRET, {

@@ -1,7 +1,8 @@
 import { Role } from 'common-app/models';
+import { ObjectId } from 'mongodb';
 
 export interface User {
-  _id: string;
+  _id: ObjectId;
   email: string;
   password: string;
   salt: string;
